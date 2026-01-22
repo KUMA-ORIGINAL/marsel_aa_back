@@ -17,8 +17,8 @@ services:
     depends_on:
       database_marsel:
         condition: service_healthy
-  networks:
-    - proxy-net
+    networks:
+      - proxy-net
 
   database_marsel:
     image: postgres:16.2-alpine3.18
