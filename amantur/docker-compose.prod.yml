@@ -1,0 +1,74 @@
+
+services:
+  backend_amantur:
+    build:
+      context: app
+      dockerfile: Dockerfile.prod
+    env_file:
+      - .env.prod
+    container_name: backend_amantur
+    restart: always
+    expose:
+      - 8000
+    volumes:
+      - ./app:/app
+      - static_volume_amantur:/app/static
+      - media_volume_amantur:/app/media
+    depends_on:
+      database_amantur:
+        condition: service_healthy
+
+  database_amantur:
+    image: postgres:16.2-alpine3.18
+    env_file: .env.prod
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    volumes:
+      - database_storage_amantur:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+
+#  nginx_amantur:
+#    build: nginx
+#    env_file: .env.prod
+#    restart: unless-stopped
+#    ports:
+#      - '80:80'
+#      - '443:443'
+#    volumes:
+#      - static_volume_amantur:/app/static
+#      - media_volume_amantur:/app/media
+#      - certs_amantur:/etc/letsencrypt
+#    depends_on:
+#      - backend_amantur
+#      - frontend_amantur
+#
+#  frontend_amantur:
+#    build:
+#      context: ../milcase/
+#      dockerfile: Dockerfile
+#    restart: always
+#    depends_on:
+#      - backend_amantur
+#    volumes:
+#      - static_volume_amantur:/frontend_static
+
+volumes:
+  database_storage_amantur:
+  static_volume_amantur:
+  media_volume_amantur:
+  certs_amantur:
+
+networks:
+  proxy-net:
+    external: true

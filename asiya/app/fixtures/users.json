@@ -1,0 +1,18 @@
+[
+    {
+        "model": "account.user",
+        "pk": 2,
+        "fields": {
+            "password": "testuser2",
+            "email": "testuser2@example.com"
+        }
+    },
+    {
+        "model": "account.user",
+        "pk": 3,
+        "fields": {
+            "password": "testuser3",
+            "email": "testuser3@example.com"
+        }
+    }
+]

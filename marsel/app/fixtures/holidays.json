@@ -1,0 +1,42 @@
+[
+  {
+    "model": "promotions.holiday",
+    "pk": 1,
+    "fields": {
+      "name": "8 марта",
+      "month": 3,
+      "day": 8,
+      "products": []
+    }
+  },
+  {
+    "model": "promotions.holiday",
+    "pk": 2,
+    "fields": {
+      "name": "23 февраля",
+      "month": 2,
+      "day": 23,
+      "products": []
+    }
+  },
+  {
+    "model": "promotions.holiday",
+    "pk": 3,
+    "fields": {
+      "name": "1 июня",
+      "month": 6,
+      "day": 1,
+      "products": []
+    }
+  },
+  {
+    "model": "promotions.holiday",
+    "pk": 4,
+    "fields": {
+      "name": "30 декабря",
+      "month": 12,
+      "day": 30,
+      "products": []
+    }
+  }
+]

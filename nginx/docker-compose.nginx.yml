@@ -1,0 +1,49 @@
+services:
+  nginx:
+    build: .
+    restart: always
+    env_file: .env.nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - certs:/etc/letsencrypt
+
+      - static_volume_asiya:/app/static/asiya:ro
+      - media_volume_asiya:/app/media/asiya:ro
+
+      - static_volume_marsel:/app/static/marsel:ro
+      - media_volume_marsel:/app/media/marsel:ro
+
+      - static_volume_amantur:/app/static/amantur:ro
+      - media_volume_amantur:/app/media/amantur:ro
+    networks:
+      - proxy-net
+
+volumes:
+  static_volume_asiya:
+    external: true
+    name: asiya_static_volume_asiya   # реально существующий
+  media_volume_asiya:
+    external: true
+    name: asiya_media_volume_asiya
+
+  static_volume_marsel:
+    external: true
+    name: marsel_static_volume_marsel
+  media_volume_marsel:
+    external: true
+    name: marsel_media_volume_marsel
+
+  static_volume_amantur:
+    external: true
+    name: amantur_static_volume_amantur
+  media_volume_amantur:
+    external: true
+    name: amantur_media_volume_amantur
+
+  certs:
+
+networks:
+  proxy-net:
+    external: true

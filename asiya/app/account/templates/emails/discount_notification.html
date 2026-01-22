@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ваша скидка увеличена</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #f5f6fa; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+  <div style="max-width: 600px; margin: 40px auto; background: #ffffff; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.1); overflow: hidden;">
+
+    <div style="background-color: #8f95cd; padding: 24px 30px;">
+      <h2 style="margin: 0; color: #ffffff; font-size: 24px;">Привет, {{ first_name }}! 👋</h2>
+    </div>
+
+    <div style="padding: 30px;">
+      <p style="font-size: 16px; color: #444;">
+        Мы рады сообщить, что ваша <strong>персональная скидка</strong> увеличилась до
+        <span style="color: #8f95cd; font-weight: bold;">{{ discount }}%</span>! 🎁
+      </p>
+
+      <p style="font-size: 16px; color: #555;">
+        Не упустите возможность воспользоваться предложением — оно уже ждёт вас!
+      </p>
+
+      <div style="text-align: center; margin: 30px 0;">
+        <a href="{{ site_url }}" style="
+          background-color: #8f95cd;
+          color: #fff;
+          padding: 14px 28px;
+          text-decoration: none;
+          border-radius: 8px;
+          font-size: 16px;
+          font-weight: bold;
+          box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+          display: inline-block;
+        ">
+          Перейти в магазин
+        </a>
+      </div>
+
+      <p style="font-size: 14px; color: #999; text-align: center;">
+        Если вы не хотите получать такие письма — вы можете изменить настройки уведомлений в своём профиле.
+      </p>
+    </div>
+
+    <div style="background-color: #e1e3f6; padding: 16px; text-align: center;">
+      <p style="margin: 0; font-size: 12px; color: #6c6f93;">
+        © {{ current_year }} Milcase. С любовью, ваша команда 💜
+      </p>
+    </div>
+  </div>
+</body>
+</html>

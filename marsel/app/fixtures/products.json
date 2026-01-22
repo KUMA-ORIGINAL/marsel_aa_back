@@ -1,0 +1,67 @@
+[
+    {
+        "model": "products.product",
+        "pk": 1,
+        "fields": {
+            "name": "iPhone 15 Pro Silicone Case",
+            "description": "Official Apple silicone case for iPhone 15 Pro.",
+            "price": "49.99",
+            "category": [1],
+            "is_hidden": false,
+            "created_at": "2025-02-10T12:00:00Z",
+            "updated_at": "2025-02-10T12:00:00Z"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 2,
+        "fields": {
+            "name": "Clear MagSafe Case for iPhone 15",
+            "description": "Crystal-clear protective case with MagSafe support.",
+            "price": "39.99",
+            "category": [1],
+            "is_hidden": false,
+            "created_at": "2025-02-10T12:10:00Z",
+            "updated_at": "2025-02-10T12:10:00Z"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 3,
+        "fields": {
+            "name": "Leather Case iPhone 14 Pro Max",
+            "description": "Premium leather case for iPhone 14 Pro Max.",
+            "price": "59.99",
+            "category": [1],
+            "is_hidden": false,
+            "created_at": "2025-02-10T12:20:00Z",
+            "updated_at": "2025-02-10T12:20:00Z"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 4,
+        "fields": {
+            "name": "Rugged Case for iPhone 13",
+            "description": "Shockproof rugged case with military-grade protection.",
+            "price": "29.99",
+            "category": [1],
+            "is_hidden": false,
+            "created_at": "2025-02-10T12:30:00Z",
+            "updated_at": "2025-02-10T12:30:00Z"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 5,
+        "fields": {
+            "name": "Slim Transparent iPhone SE Case",
+            "description": "Minimalist slim-fit case for iPhone SE (2022).",
+            "price": "19.99",
+            "category": [1],
+            "is_hidden": false,
+            "created_at": "2025-02-10T12:40:00Z",
+            "updated_at": "2025-02-10T12:40:00Z"
+        }
+    }
+]

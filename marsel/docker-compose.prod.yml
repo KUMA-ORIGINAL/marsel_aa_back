@@ -1,0 +1,74 @@
+
+services:
+  backend_marsel:
+    build:
+      context: app
+      dockerfile: Dockerfile.prod
+    env_file:
+      - .env.prod
+    container_name: backend_marsel
+    restart: always
+    expose:
+      - 8000
+    volumes:
+      - ./app:/app
+      - static_volume_marsel:/app/static
+      - media_volume_marsel:/app/media
+    depends_on:
+      database_marsel:
+        condition: service_healthy
+
+  database_marsel:
+    image: postgres:16.2-alpine3.18
+    env_file: .env.prod
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    volumes:
+      - database_storage_marsel:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+
+#  nginx_marsel:
+#    build: nginx
+#    env_file: .env.prod
+#    restart: unless-stopped
+#    ports:
+#      - '80:80'
+#      - '443:443'
+#    volumes:
+#      - static_volume_marsel:/app/static
+#      - media_volume_marsel:/app/media
+#      - certs_marsel:/etc/letsencrypt
+#    depends_on:
+#      - backend_marsel
+#      - frontend_marsel
+#
+#  frontend_marsel:
+#    build:
+#      context: ../milcase/
+#      dockerfile: Dockerfile
+#    restart: always
+#    depends_on:
+#      - backend_marsel
+#    volumes:
+#      - static_volume_marsel:/frontend_static
+
+volumes:
+  database_storage_marsel:
+  static_volume_marsel:
+  media_volume_marsel:
+  certs_marsel:
+
+networks:
+  proxy-net:
+    external: true
