@@ -17,13 +17,13 @@ services:
     depends_on:
       database_asiya:
         condition: service_healthy
+    networks:
+      - proxy-net
 
   database_asiya:
     image: postgres:16.2-alpine3.18
     env_file: .env.prod
     restart: unless-stopped
-    ports:
-      - "5432:5432"
     volumes:
       - database_storage_asiya:/var/lib/postgresql/data
     healthcheck:
@@ -37,6 +37,8 @@ services:
         limits:
           cpus: '1'
           memory: 1G
+    networks:
+      - proxy-net
 
 #  nginx_asiya:
 #    build: nginx
