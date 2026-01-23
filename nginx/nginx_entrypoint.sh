@@ -11,7 +11,9 @@ if [ "$get_certs_lower" = "true" ]; then
         domains_args="$domains_args -d $domain"
     done
 
-    certbot --nginx \
+    certbot certonly \
+        --webroot \
+        -w /var/www/certbot \
         --email "$CERTBOT_EMAIL" \
         --agree-tos \
         --no-eff-email \
