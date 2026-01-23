@@ -7,7 +7,7 @@ if [ "$get_certs_lower" = "true" ]; then
 
     # собираем список аргументов -d
     domains_args=""
-    for domain in $DOMAIN_MARSEL $DOMAIN_ASIYA $DOMAIN_AMANTUR; do
+    for domain in $DOMAIN_ASIYA $DOMAIN_MARSEL $DOMAIN_AMANTUR; do
         domains_args="$domains_args -d $domain"
     done
 
