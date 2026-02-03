@@ -58,11 +58,7 @@ class User(AbstractUser):
                                 options={'quality': 60},
                                 blank=True)
     birthdate = models.DateField(blank=True, null=True, verbose_name='День рождения')
-    phone_model = models.ForeignKey('PhoneModel', on_delete=models.SET_NULL,
-                                    null=True, blank=True, verbose_name="Модель телефона")
     points = models.PositiveIntegerField(default=0, verbose_name='Накопленные баллы')
-    quantity_of_cases = models.PositiveIntegerField(default=0, verbose_name='Количество купленных чехлов')
-    free_cases = models.PositiveIntegerField(default=0, verbose_name='Количество бесплатных чехлов')
 
     cluster = models.CharField(max_length=10, choices=CLUSTER_CHOICES, blank=True, null=True, verbose_name="Кластер")
     last_cluster_update = models.DateTimeField('Дата последнего обновления кластера', auto_now=True)
@@ -100,40 +96,3 @@ class User(AbstractUser):
             if discount:
                 return discount.discount_percentage
         return 0
-
-    def add_case(self, count=1):
-        """
-        Увеличиваем количество купленных чехлов и обновляем количество бесплатных чехлов.
-        Когда количество купленных чехлов достигает 6, обновляем `free_cases`.
-        """
-        self.quantity_of_cases += count
-
-        self.free_cases = self.quantity_of_cases // 6
-
-        # Сбросить количество купленных чехлов после достижения 6
-        if self.quantity_of_cases >= 6:
-            self.quantity_of_cases = self.quantity_of_cases % 6  # Сбрасываем до 0 после 6 чехлов
-
-        self.save()
-
-    def update_case_counts_after_order(self, order):
-        """
-        Обновляем количество купленных чехлов и бесплатных чехлов после завершения оплаты.
-        """
-        # Подсчитываем количество купленных чехлов в заказе
-        total_case_count = 0
-        for item in order.order_items.all():
-            if item.product.is_case:
-                total_case_count += item.quantity
-
-        # Получаем количество бесплатных чехлов
-        free_case_count = order.free_case_count
-
-        # Вычисляем количество купленных чехлов за вычетом бесплатных
-        actual_case_count = total_case_count - free_case_count
-
-        # Обновляем количество чехлов у пользователя
-        self.add_case(count=actual_case_count)
-        self.free_cases -= free_case_count  # Вычитаем использованные бесплатные чехлы
-
-        self.save()

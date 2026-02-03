@@ -18,7 +18,6 @@ class Order(models.Model):
     )
     discount = models.DecimalField(max_digits=5, decimal_places=2, default=0.00, verbose_name='Скидка')
     welcome_discount = models.PositiveSmallIntegerField(default=0, verbose_name="Welcome-скидка")
-    free_case_count = models.PositiveIntegerField(default=0, verbose_name='Количество бесплатных чехлов')
     status = models.CharField(
         max_length=50,
         choices=Status,
@@ -54,10 +53,3 @@ class Order(models.Model):
         ordering = ('-created_at',)
         verbose_name = "Заказ"
         verbose_name_plural = "Заказы"
-
-    def get_case_count(self):
-        """
-        Метод для подсчета количества чехлов в заказе.
-        """
-        case_count = self.order_items.filter(product__is_case=True).aggregate(total=models.Sum('quantity'))['total']
-        return case_count if case_count else 0

@@ -172,7 +172,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DOMAIN = 'milcase.twc1.net'
 
-SITE_NAME = 'Milcase'
+SITE_NAME = 'Asiya'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -196,7 +196,7 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'Milcase Backend',
+    'TITLE': 'Asiya Backend',
     'DESCRIPTION': 'Your project description',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
@@ -248,8 +248,8 @@ DJOSER = {
 }
 
 UNFOLD = {
-    "SITE_TITLE": 'Milcase',
-    "SITE_HEADER": "Milcase",
+    "SITE_TITLE": 'Asiya',
+    "SITE_HEADER": "Asiya",
     "SITE_URL": "/",
     "SITE_SYMBOL": "menu",  # symbol from icon set
     "SHOW_HISTORY": True, # show/hide "History" button, default: True
@@ -333,16 +333,6 @@ UNFOLD = {
                         "icon": "event",
                         "link": reverse_lazy("admin:promotions_holiday_changelist"),
                     }
-                ],
-            },
-            {
-                "title": _("Модели телефонов"),
-                "items": [
-                    {
-                        "title": _("Модели телефонов"),
-                        "icon": "phone",
-                        "link": reverse_lazy("admin:account_phonemodel_changelist"),
-                    },
                 ],
             },
             {

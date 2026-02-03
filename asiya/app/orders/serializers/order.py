@@ -1,5 +1,3 @@
-from decimal import Decimal
-
 from rest_framework import serializers
 
 from .order_item import OrderItemCreateSerializer, OrderItemListSerializer
@@ -26,14 +24,7 @@ class OrderCreateSerializer(serializers.ModelSerializer):
             quantity = item_data['quantity']
             price = product.price * quantity
 
-            if product.is_case:
-                if free_case_count < user.free_cases:
-                    is_free = True
-                    free_case_count += 1
-                else:
-                    is_free = False
-            else:
-                is_free = False
+            is_free = False
 
             OrderItem.objects.create(
                 order=order,
@@ -55,7 +46,6 @@ class OrderCreateSerializer(serializers.ModelSerializer):
 
         order.total_price = round(total_price)
         order.discount = welcome_discount_amount + birthday_discount_amount
-        order.free_case_count = free_case_count
         order.welcome_discount = welcome_discount
         order.save()
 
@@ -67,4 +57,4 @@ class OrderListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = ['id', 'total_price', 'discount', 'free_case_count', 'status', 'order_items', 'created_at', 'updated_at']
+        fields = ['id', 'total_price', 'discount', 'status', 'order_items', 'created_at', 'updated_at']

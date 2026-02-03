@@ -19,4 +19,4 @@ class ProductSerializer(ProductBaseSerializer):
 class ProductListSerializer(ProductBaseSerializer):
 
     class Meta(ProductBaseSerializer.Meta):
-        fields = ('id', 'name', 'photo', 'price', 'is_case', 'category')
+        fields = ('id', 'name', 'photo', 'price', 'category')

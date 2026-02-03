@@ -15,7 +15,6 @@ class Product(models.Model):
                               blank=True, verbose_name=_("Фото"))
     category = models.ManyToManyField('Category', related_name='products', verbose_name=_("Категории"))
     is_hidden = models.BooleanField(default=False, verbose_name=_("Скрыт"))
-    is_case = models.BooleanField(default=False, verbose_name=_("Чехол"))
 
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_("Дата создания"))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_("Дата обновления"))

@@ -2,12 +2,11 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from djoser.views import UserViewSet
 
-from .views import MeViewSet, AdSlideViewSet, FavoriteProductsViewSet, PhoneModelViewSet, trending_recommendations
+from .views import MeViewSet, AdSlideViewSet, FavoriteProductsViewSet, trending_recommendations
 
 router = DefaultRouter()
 router.register('ad-slides', AdSlideViewSet)
 router.register('favorites', FavoriteProductsViewSet, basename='favorites')
-router.register('phone-models', PhoneModelViewSet, basename='phone-models')
 
 urlpatterns = [
     path('', include(router.urls)),

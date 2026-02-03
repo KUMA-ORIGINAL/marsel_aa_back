@@ -11,10 +11,6 @@ class OrderItem(models.Model):
         decimal_places=2,
         verbose_name="Цена"
     )
-    is_free = models.BooleanField(
-        default=False,
-        verbose_name="Бесплатный товар"
-    )
 
     order = models.ForeignKey(
         'Order',

@@ -14,7 +14,7 @@ class ProductAdmin(UnfoldModelAdmin):
     list_display = ('id', 'name', 'price', 'display_categories', 'is_hidden', 'display_photo')
     list_display_links = ('id', 'name')
     list_editable = ('is_hidden',)
-    list_filter = ('category', 'is_case')
+    list_filter = ('category',)
     search_fields = ('name',)
     autocomplete_fields = ('category',)
     readonly_fields = ('created_at', 'updated_at')

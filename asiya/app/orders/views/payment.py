@@ -26,7 +26,7 @@ class CreateCheckoutSessionView(APIView):
                         'price_data': {
                             'currency': 'KGS',
                             'product_data': {
-                                'name': 'Payment milcase',  # Название заказа или продукта
+                                'name': 'Payment asiya',  # Название заказа или продукта
                             },
                             'unit_amount': int(order.total_price * 100),  # Цена в центах
                         },
@@ -71,8 +71,6 @@ def stripe_webhook(request):
         if order_id:
             order = Order.objects.get(id=order_id)
             order.status = Order.Status.PAID
-
-            order.user.update_case_counts_after_order(order)
 
             order.save()
 
