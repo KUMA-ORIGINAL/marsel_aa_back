@@ -89,3 +89,33 @@ class OrderCreateApiTests(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(Order.objects.count(), 0)
+
+    def test_create_order_with_user_without_birthdate(self):
+        user_without_birthdate = User.objects.create_user(
+            email="no-birthdate@example.com",
+            password="strong-pass-123",
+            first_name="No",
+            last_name="Birthdate",
+        )
+        user_without_birthdate.welcome_discount = 0
+        user_without_birthdate.save(update_fields=["welcome_discount"])
+
+        self.client.force_authenticate(user=user_without_birthdate)
+        payload = {
+            "city": "Bishkek",
+            "address": "Main street 1",
+            "phone_number": "+996700000000",
+            "order_items": [
+                {
+                    "product": self.product.id,
+                    "quantity": 1,
+                }
+            ],
+        }
+
+        response = self.client.post(self.url, payload, format="json")
+
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        order = Order.objects.get(id=response.data["id"])
+        self.assertEqual(order.total_price, Decimal("100.00"))
+        self.assertEqual(order.discount, Decimal("0.00"))

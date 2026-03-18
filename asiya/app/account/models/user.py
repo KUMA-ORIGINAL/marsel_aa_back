@@ -90,6 +90,8 @@ class User(AbstractUser):
 
     def get_birthday_discount(self):
         today = timezone.localdate()
+        if not self.birthdate:
+            return 0
 
         if today.month == self.birthdate.month and today.day == self.birthdate.day:
             discount = BirthdayDiscountSettings.objects.first()
