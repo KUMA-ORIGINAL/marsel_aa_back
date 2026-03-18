@@ -7,6 +7,13 @@ from account.models import User
 from config import settings
 
 
+def _build_site_url():
+    domain = str(settings.DOMAIN).strip().rstrip("/")
+    if domain.startswith("http://") or domain.startswith("https://"):
+        return domain
+    return f"https://{domain}"
+
+
 def increase_welcome_discount():
     now = timezone.now()
     users = User.objects.filter(cluster='K4', entered_k4_at__isnull=False)
@@ -33,7 +40,7 @@ def send_discount_notification(user, discount):
     context = {
         "first_name": user.first_name or "друг",
         "discount": discount,
-        "site_url": f"https://{settings.DOMAIN}",  # замените на ваш реальный URL
+        "site_url": _build_site_url(),
     }
 
     # Текстовая версия (на случай, если HTML не отображается)

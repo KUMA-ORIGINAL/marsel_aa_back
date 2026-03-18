@@ -26,7 +26,7 @@ class CreateCheckoutSessionView(APIView):
                         'price_data': {
                             'currency': 'KGS',
                             'product_data': {
-                                'name': 'Payment asiya',  # Название заказа или продукта
+                                'name': 'Payment AkKush',  # Название заказа или продукта
                             },
                             'unit_amount': int(order.total_price * 100),  # Цена в центах
                         },

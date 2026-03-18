@@ -9,6 +9,13 @@ from products.models import Product
 from promotions.models import Holiday
 
 
+def _build_site_url():
+    domain = str(settings.DOMAIN).strip().rstrip("/")
+    if domain.startswith("http://") or domain.startswith("https://"):
+        return domain
+    return f"https://{domain}"
+
+
 def send_gift_email(user):
     now = timezone.now().date()
 
@@ -36,7 +43,7 @@ def send_gift_email(user):
         "user": user,
         "products": products,
         "holidays": selected_holidays,
-        "site_url": f"https://{settings.DOMAIN}",
+        "site_url": _build_site_url(),
     }
 
     # Можно выбрать шаблон универсальный, например "gift_ideas_generic.html"

@@ -57,7 +57,7 @@ services:
 #
 #  frontend_asiya:
 #    build:
-#      context: ../milcase/
+#      context: ../AkKush/
 #      dockerfile: Dockerfile
 #    restart: always
 #    depends_on:

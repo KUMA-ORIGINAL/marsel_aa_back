@@ -4,11 +4,16 @@
   <meta charset="UTF-8" />
   <title>🎁 Идеи подарков</title>
 </head>
-<body style="margin: 0; padding: 0; background-color: #f5f6fa; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+<body style="margin: 0; padding: 0; background-color: #edf4ff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
   <div style="max-width: 600px; margin: 40px auto; background: #ffffff; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.1); overflow: hidden;">
 
     <!-- Header -->
-    <div style="background-color: #8f95cd; padding: 24px 30px; border-top-left-radius: 12px; border-top-right-radius: 12px;">
+    <div style="background-color: #1e40af; padding: 24px 30px; border-top-left-radius: 12px; border-top-right-radius: 12px;">
+      <img
+        src="{{ site_url }}/static/logo.png"
+        alt="AkKush"
+        style="display: block; width: 90px; margin: 0 auto 14px;"
+      />
       <h2 style="margin: 0; color: #ffffff; font-size: 24px;">Привет, {{ user.first_name }}! 👋</h2>
     </div>
 
@@ -19,7 +24,7 @@
       </p>
 
       {% for holiday in holidays %}
-        <div style="display: inline-block; background-color: #e6e7f8; color: #4c4f76; padding: 8px 16px; border-radius: 20px; font-weight: 600; font-size: 14px; margin-bottom: 20px;">
+        <div style="display: inline-block; background-color: #dbeafe; color: #1e3a8a; padding: 8px 16px; border-radius: 20px; font-weight: 600; font-size: 14px; margin-bottom: 20px;">
           🎉 {{ holiday.name }}
         </div>
       {% endfor %}
@@ -30,7 +35,7 @@
         <ul style="padding-left: 20px; margin: 0;">
           {% for product in products %}
             <li style="margin-bottom: 10px;">
-              <a href="{{ site_url }}" style="color: #8f95cd; text-decoration: none; font-weight: 600;">{{ product.name }}</a>
+              <a href="{{ site_url }}" style="color: #1d4ed8; text-decoration: none; font-weight: 600;">{{ product.name }}</a>
             </li>
           {% endfor %}
         </ul>
@@ -41,7 +46,7 @@
       <!-- CTA Button -->
       <div style="text-align: center; margin: 40px 0 20px;">
         <a href="{{ site_url }}" style="
-          background-color: #8f95cd;
+          background-color: #1d4ed8;
           color: #ffffff;
           padding: 14px 28px;
           text-decoration: none;
@@ -61,9 +66,9 @@
     </div>
 
     <!-- Footer -->
-    <div style="background-color: #e1e3f6; padding: 16px; text-align: center; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;">
-      <p style="margin: 0; font-size: 12px; color: #6c6f93;">
-        © {{ current_year }} Milcase. С любовью, ваша команда 💜
+    <div style="background-color: #dbeafe; padding: 16px; text-align: center; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;">
+      <p style="margin: 0; font-size: 12px; color: #1e3a8a;">
+        © {{ current_year }} AkKush. С любовью, ваша команда 💜
       </p>
     </div>
 

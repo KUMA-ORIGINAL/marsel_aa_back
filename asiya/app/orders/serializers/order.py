@@ -17,23 +17,19 @@ class OrderCreateSerializer(serializers.ModelSerializer):
         order = Order.objects.create(**validated_data)
         user = order.user
         total_price = 0
-        free_case_count = 0
 
         for item_data in items_data:
             product = item_data['product']
             quantity = item_data['quantity']
             price = product.price * quantity
 
-            is_free = False
-
             OrderItem.objects.create(
                 order=order,
                 product=product,
                 quantity=quantity,
-                price=price if not is_free else 0,  # Бесплатный товар будет стоить 0
-                is_free=is_free
+                price=price,
             )
-            total_price += price if not is_free else 0  # Не добавляем цену бесплатных товаров в общую стоимость
+            total_price += price
 
         welcome_discount = user.welcome_discount or 0
         welcome_discount_amount = round((total_price * welcome_discount) / 100)

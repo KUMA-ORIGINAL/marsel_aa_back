@@ -172,7 +172,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DOMAIN = 'https://asiya.ustaz.tech'
 
-SITE_NAME = 'Asiya'
+SITE_NAME = 'AkKush'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -196,7 +196,7 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'Asiya Backend',
+    'TITLE': 'AkKush Backend',
     'DESCRIPTION': 'Your project description',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
@@ -248,8 +248,8 @@ DJOSER = {
 }
 
 UNFOLD = {
-    "SITE_TITLE": 'Asiya',
-    "SITE_HEADER": "Asiya",
+    "SITE_TITLE": 'AkKush',
+    "SITE_HEADER": "AkKush",
     "SITE_URL": "/",
     "SITE_SYMBOL": "menu",  # symbol from icon set
     "SHOW_HISTORY": True, # show/hide "History" button, default: True

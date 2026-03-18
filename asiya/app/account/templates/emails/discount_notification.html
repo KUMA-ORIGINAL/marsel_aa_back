@@ -4,17 +4,22 @@
   <meta charset="UTF-8" />
   <title>Ваша скидка увеличена</title>
 </head>
-<body style="margin: 0; padding: 0; background-color: #f5f6fa; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+<body style="margin: 0; padding: 0; background-color: #edf4ff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
   <div style="max-width: 600px; margin: 40px auto; background: #ffffff; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.1); overflow: hidden;">
 
-    <div style="background-color: #8f95cd; padding: 24px 30px;">
+    <div style="background-color: #1e40af; padding: 24px 30px;">
+      <img
+        src="{{ site_url }}/static/logo.png"
+        alt="AkKush"
+        style="display: block; width: 90px; margin: 0 auto 14px;"
+      />
       <h2 style="margin: 0; color: #ffffff; font-size: 24px;">Привет, {{ first_name }}! 👋</h2>
     </div>
 
     <div style="padding: 30px;">
       <p style="font-size: 16px; color: #444;">
         Мы рады сообщить, что ваша <strong>персональная скидка</strong> увеличилась до
-        <span style="color: #8f95cd; font-weight: bold;">{{ discount }}%</span>! 🎁
+        <span style="color: #1d4ed8; font-weight: bold;">{{ discount }}%</span>! 🎁
       </p>
 
       <p style="font-size: 16px; color: #555;">
@@ -23,7 +28,7 @@
 
       <div style="text-align: center; margin: 30px 0;">
         <a href="{{ site_url }}" style="
-          background-color: #8f95cd;
+          background-color: #1d4ed8;
           color: #fff;
           padding: 14px 28px;
           text-decoration: none;
@@ -42,9 +47,9 @@
       </p>
     </div>
 
-    <div style="background-color: #e1e3f6; padding: 16px; text-align: center;">
-      <p style="margin: 0; font-size: 12px; color: #6c6f93;">
-        © {{ current_year }} Milcase. С любовью, ваша команда 💜
+    <div style="background-color: #dbeafe; padding: 16px; text-align: center;">
+      <p style="margin: 0; font-size: 12px; color: #1e3a8a;">
+        © {{ current_year }} AkKush. С любовью, ваша команда 💜
       </p>
     </div>
   </div>
