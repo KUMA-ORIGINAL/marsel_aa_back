@@ -44,7 +44,7 @@ class UserAdmin(UserAdmin, UnfoldModelAdmin):
         ('Личная информация', {
                  'fields': ('first_name', 'last_name', 'birthdate', 'photo')}),
         ('Доп. Информация', {
-            'fields': ('points', 'quantity_of_cases', 'free_cases', 'phone_model', 'welcome_discount', 'favorite_products')}),
+            'fields': ('points', 'welcome_discount', 'favorite_products')}),
         ('Кластер', {
             'fields': ('cluster', 'last_cluster_update', 'entered_k4_at')}),
     )
