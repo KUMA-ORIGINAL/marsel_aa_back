@@ -16,7 +16,7 @@ class Order(models.Model):
         default=0,
         verbose_name="Общая стоимость"
     )
-    discount = models.DecimalField(max_digits=5, decimal_places=2, default=0.00, verbose_name='Скидка')
+    discount = models.DecimalField(max_digits=10, decimal_places=2, default=0.00, verbose_name='Скидка')
     welcome_discount = models.PositiveSmallIntegerField(default=0, verbose_name="Welcome-скидка")
     status = models.CharField(
         max_length=50,

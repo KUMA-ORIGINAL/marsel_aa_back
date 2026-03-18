@@ -1,6 +1,7 @@
 import json
 import logging
 
+from django.http import RawPostDataException
 from django.utils.deprecation import MiddlewareMixin
 
 logger = logging.getLogger("api.errors")
@@ -23,10 +24,16 @@ def _mask_sensitive_data(value):
 def _safe_request_body(request):
     if request.method in ("GET", "HEAD", "OPTIONS"):
         return None
-    if not request.body:
+
+    try:
+        body_bytes = request.body
+    except RawPostDataException:
+        return "[unavailable: request body stream already consumed]"
+
+    if not body_bytes:
         return None
 
-    raw_body = request.body.decode("utf-8", errors="replace")
+    raw_body = body_bytes.decode("utf-8", errors="replace")
     if len(raw_body) > _MAX_BODY_LENGTH:
         raw_body = f"{raw_body[:_MAX_BODY_LENGTH]}...[truncated]"
 

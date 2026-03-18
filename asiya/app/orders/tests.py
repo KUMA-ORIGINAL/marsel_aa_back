@@ -119,3 +119,31 @@ class OrderCreateApiTests(APITestCase):
         order = Order.objects.get(id=response.data["id"])
         self.assertEqual(order.total_price, Decimal("100.00"))
         self.assertEqual(order.discount, Decimal("0.00"))
+
+    def test_create_order_with_large_discount_does_not_overflow(self):
+        self.user.welcome_discount = 15
+        self.user.save(update_fields=["welcome_discount"])
+        expensive_product = Product.objects.create(
+            name="Case Ultra",
+            price=Decimal("10000.00"),
+        )
+
+        self.client.force_authenticate(user=self.user)
+        payload = {
+            "city": "Bishkek",
+            "address": "Main street 1",
+            "phone_number": "+996700000000",
+            "order_items": [
+                {
+                    "product": expensive_product.id,
+                    "quantity": 1,
+                }
+            ],
+        }
+
+        response = self.client.post(self.url, payload, format="json")
+
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        order = Order.objects.get(id=response.data["id"])
+        self.assertEqual(order.discount, Decimal("1500.00"))
+        self.assertEqual(order.total_price, Decimal("8500.00"))
