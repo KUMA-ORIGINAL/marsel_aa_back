@@ -8,9 +8,9 @@ from ..models import Product
 from ..serializers import ProductSerializer, ProductListSerializer
 
 class ProductPagination(PageNumberPagination):
-    page_size = 10  # Количество объектов на странице для этого вьюсета
+    page_size = 1000  # Количество объектов на странице для этого вьюсета
     page_size_query_param = 'page_size'  # Позволяет передавать количество объектов через query параметр
-    max_page_size = 100  # Максимальное количество объектов на странице
+    max_page_size = 1000  # Максимальное количество объектов на странице
 
 
 @extend_schema(tags=['Product'])
